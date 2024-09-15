@@ -1,6 +1,6 @@
 # Project: Azure Virtual Machines, Dockerized Services, MySQL, and Load Balancer
 
-## Overview
+## Overview 
 This project demonstrates the deployment of a web application using Docker containers on Azure Virtual Machines (VMs) along with MySQL as the backend database. The setup includes front-end and back-end services running on separate VMs, containerized using Docker, and balanced through Azure's Load Balancer for improved availability and performance.
 
 ## Key Components
@@ -74,8 +74,8 @@ Create NSGs and Open Ports 80 and 443
 
 ### LOG Files
 Front-end Metrics!
-![alt text](<Screenshots\frontend metrics.PNG>)
+![alt text](<Screenshots/frontend metrics-1.PNG>)
 Back-end Metrics!
-![alt text](<Screenshots\backend metrics.PNG>)
+![alt text](<Screenshots/backend nsg.PNG>)
 
 
