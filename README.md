@@ -73,9 +73,9 @@ Create NSGs and Open Ports 80 and 443
 • Resize VMs for cost efficiency based on resource utilization.
 
 ### LOG Files
-Front-end Metrics
-![alt text](<Screenshots/frontend metrics.PNG>)
-Back-end Metrics
-![alt text](<Screenshots/backend metrics.PNG>)
+Front-end Metrics!
+![alt text](<Screenshots\frontend metrics.PNG>)
+Back-end Metrics!
+![alt text](<Screenshots\backend metrics.PNG>)
 
 
