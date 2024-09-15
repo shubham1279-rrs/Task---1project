@@ -20,7 +20,7 @@ To ensure high availability, Azure's Load Balancer distributes incoming traffic 
 
 A cron job is implemented on the backend VM to monitor the health of the MySQL database and log its status at regular intervals, ensuring database uptime.
 
-##Note:- Azure Security Center Implementation
+## Note:- Azure Security Center Implementation
 I sincerely apologize for not being able to integrate Azure Security Center into the project. Unfortunately, due to insufficient balance in my Azure subscription, I was unable to proceed with the setup. Additionally, my subscription expired on the morning of September 15th, which further limited my ability to implement the necessary security enhancements.
 
 
