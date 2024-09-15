@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  backend:
+    image: backend-api:latest
+    ports:
+      - "3000:3000"  # Adjust if your API uses a different port
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=my_password
+      - DATABASE_NAME=mydb
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: my_password
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  node:
+    image: node:14
+    # This might be used for another service or as a base image; configure as needed
+    # If this is for another service, specify the necessary configuration here
+    # Example:
+    # command: node /path/to/your/app.js
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:

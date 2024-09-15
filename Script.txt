@@ -1,0 +1,104 @@
+Script 
+
+install Docker in frontend
+sudo su
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+
+Dockerize Frontend
+Step 1: Create a Static HTML Page
+mkdir ~/frontend
+cd ~/frontend
+echo "<html><h1>Hello from Frontend</h1></html>" > index.html
+Step 2:Create Dockerfile for NGINX 
+nano Dockerfile -- rcreating dockerfile
+---Add the following content to the Dockerfile:
+FROM nginx:alpine
+COPY ./index.html /usr/share/nginx/html/index.html
+ls
+---Build and run the Docker container:
+docker build -t frontend-app .  --built and run docker container
+docker run -d -p 80:80 frontend-app
+Check front-end VM by opening http://frontendVM_IP
+
+
+install Docker in backend
+sudo su
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+
+Dockerize Backend
+Step 1:Install Node.js on Back-End VM
+sudo apt install nodejs npm -y
+Step 2:Create a Simple Node.js API
+mkdir ~/backend
+cd ~/backend
+---Initialize a Node.js project
+npm init -y
+---Install Express.js:
+npm install express mysql
+---Create the app.js file with the following code
+nano app.js
+Add the following code:
+const sql = require('mssql');
+const express = require('express');
+const app = express();
+app.get('/', (req, res) => res.send('Hello from Backend'));
+app.listen(3000, () => console.log('API running on port 3000'));
+ls
+cat app.js
+---Create Dockerfile for Node.js
+nano Dockerfile
+---Add the following content to the Dockerfile
+FROM node:14
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["node", "app.js"]
+ls
+cat Dockerfile
+---Build and Run the Docker Container
+docker build -t backend-api . --built and run docker container
+---Run the container:
+docker run -d -p 3000:3000 backend-api
+Test  API by visiting http://backendVM_IP:3000 in a browser.
+
+Deploy MySQL using Docker on Back-End VM
+Step 1: Run MySQL in  Docker Container
+docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=my_password -e MYSQL_DATABASE=mydb -d mysql:latest --Remember to change name and password for MySql
+Step 2:Install MySQL Client
+sudo apt install mysql-client -y
+Step 3:Access the MySQL Database
+docker exec -it mysql-container mysql -u root -p --after this enter password for ur database
+Step 4:Switch to the mydb Database
+USE mydb; --select ur database or switch to preferrable database
+Step 5:  Create a Table in the mydb Database
+CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255));
+ *You can verify that the table has been created successfully by running:
+SHOW TABLES; --verify content in database
+ Step 6:Insert Sample Data (Optional)
+INSERT INTO users (name) VALUES ('John Doe'), ('Jane Smith'); --insert sample data
+ Step 7:Verify the Data
+SELECT * FROM users; --shows inserted data
+step 8:Use the exit Command
+exit;
+
+Steps to Add a Cron Job that Runs Every 10 Minutes--backendvm
+Step 1: Open Crontab
+crontab -e
+Step 2: Add the Cron Job
+nano check_mysql_health.sh
+*/10 * * * * /home/azureuser/backend/check_mysql_health.sh --add this at the end of the script
+Step 3: Save and Exit
+Step 4: Verify the Cron Job
+*/10 * * * * /home/azureuser/backend/check_mysql_health.sh
+Step 5: Check the Logs
+cat /var/log/mysql_health_check.log

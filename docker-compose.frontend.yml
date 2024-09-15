@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: frontend_image:latest
+    ports:
+      - "80:80"
