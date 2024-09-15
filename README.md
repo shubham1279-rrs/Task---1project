@@ -74,8 +74,8 @@ Create NSGs and Open Ports 80 and 443
 
 ### LOG Files
 Front-end Metrics
-![alt text](<frontend metrics.PNG>)
+![alt text](<Screenshots/frontend metrics.PNG>)
 Back-end Metrics
-![alt text](<backend metrics.PNG>)
+![alt text](<Screenshots/backend metrics.PNG>)
 
 
